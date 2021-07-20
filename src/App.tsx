@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Button, Text, View } from 'react-native';
 import Base from './Base';
+import { handleGetOnece } from './service/todos';
 
 interface Props {}
 interface State {
@@ -32,6 +33,7 @@ export default class App extends Base<Props, State> {
                     }}>
                     app
                 </Text>
+                <Button title="获取数据" onPress={() => handleGetOnece()} />
             </View>
         );
     }
