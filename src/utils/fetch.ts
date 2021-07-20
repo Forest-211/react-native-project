@@ -1,4 +1,6 @@
 import { baseUrl } from '../config/config';
+import internet from './internet';
+import { StateCode } from './status-code';
 
 interface FetchOptions {
     url: string; // 获取资源的 URL
@@ -32,12 +34,6 @@ export function Fetch(options: FetchOptions) {
     };
 
     /**
-     * TODO：处理网络问题
-     *
-     *
-     */
-
-    /**
      * 定义失败信息
      * - 状态码
      * - 提示信息
@@ -45,6 +41,19 @@ export function Fetch(options: FetchOptions) {
      */
 
     return new Promise(async (resolve, reject) => {
+        /**
+         * TODO：处理网络问题
+         *
+         *
+         */
+        const { isConnected } = await internet();
+        if (!isConnected) {
+            reject({
+                status: 10001,
+                msg: '当前网络已中断，请稍后重试！',
+            });
+            return;
+        }
         // 数据序列化
         if (
             Object.prototype.toString.call(options.body) === '[object, Object]'
@@ -84,61 +93,26 @@ export function Fetch(options: FetchOptions) {
                     result = res.json();
                     return resolve(result);
                 }
-                console.log('res:', res);
                 result = res.toString();
                 resolve(result);
             })
             .catch(err => {
-                let errMsg = '';
                 if (err && err.response.status) {
-                    switch (err.response.status) {
-                        case 401:
-                            errMsg = '登录状态失效，请重新登录';
-                            break;
-                        case 403:
-                            errMsg = '拒绝访问';
-                            break;
-
-                        case 408:
-                            errMsg = '请求超时';
-                            break;
-
-                        case 500:
-                            errMsg = '服务器内部错误';
-                            break;
-
-                        case 501:
-                            errMsg = '服务未实现';
-                            break;
-
-                        case 502:
-                            errMsg = '网关错误';
-                            break;
-
-                        case 503:
-                            errMsg = '服务不可用';
-                            break;
-
-                        case 504:
-                            errMsg = '网关超时';
-                            break;
-
-                        case 505:
-                            errMsg = 'HTTP版本不受支持';
-                            break;
-
-                        default:
-                            errMsg = err.response.data.msg;
-                            break;
-                    }
-                } else {
-                    errMsg = err;
+                    StateCode.forEach(item => {
+                        if (item.code === err.response.status) {
+                            reject({
+                                status: err.response.status,
+                                msg: item.msg,
+                            });
+                            return;
+                        }
+                        return;
+                    });
+                    reject({
+                        status: err.response.status,
+                        msg: err.response.statusText,
+                    });
                 }
-                console.log('errMsg:', errMsg);
-                reject({
-                    status: err.response.status,
-                    msg: err.response.statusText,
-                });
             });
     });
 }

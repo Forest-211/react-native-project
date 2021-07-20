@@ -1,0 +1,17 @@
+export const StateCode = [
+    { code: 401, msg: '登录状态失效，请重新登录' },
+    { code: 403, msg: '拒绝访问' },
+    { code: 408, msg: '请求超时' },
+    { code: 500, msg: '服务器内部错误' },
+    { code: 501, msg: '服务未实现' },
+    { code: 502, msg: '网关错误' },
+    { code: 503, msg: '服务不可用' },
+    { code: 504, msg: '网关超时' },
+    { code: 505, msg: 'HTTP版本不受支持' },
+    { code: 1000, msg: '服务器未知错误' },
+    { code: 10001, msg: '权限不足' },
+    { code: 10010, msg: '授权失败' },
+    { code: 10020, msg: '资源不存在' },
+    { code: 10021, msg: '未找到文件' },
+    { code: 10100, msg: '请求过于频繁，请稍后重试' },
+];
