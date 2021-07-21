@@ -6,7 +6,7 @@ async function handleGetOnece() {
     // @ts-ignore
     const todo: Todo = await Fetch({
         url: '/todos/1',
-        methods: 'get',
+        method: 'GET',
     });
     console.log('result:', todo);
 
