@@ -6,7 +6,9 @@ import { handleGetOnece } from './service/todos';
 import appStyles from './assets/styles/screens/app';
 import Message from 'react-native-toast-message';
 import EasyToast from 'react-native-easy-toast';
+import { Provider } from 'react-redux';
 import { Todo } from './types/service/todo';
+import store from './store/store';
 
 interface Props {}
 interface State {
@@ -79,7 +81,7 @@ export default class App extends Base<Props, State> {
         const { loading, loadingText, todo } = this.state;
         console.log('todo:', todo);
         return (
-            <>
+            <Provider store={store}>
                 {/* loading */}
                 {loading && (
                     <View style={[appStyles.loading]}>
@@ -130,7 +132,13 @@ export default class App extends Base<Props, State> {
                     position="center"
                     ref={toast => (this.toast = toast)}
                 />
-            </>
+            </Provider>
         );
     }
 }
+
+// function mapStateToProps(state: any) {
+//     console.log('state:', state);
+// }
+
+// connect(mapStateToProps)(App);
