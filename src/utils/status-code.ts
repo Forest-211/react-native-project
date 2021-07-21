@@ -14,4 +14,5 @@ export const StateCode = [
     { code: 10020, msg: '资源不存在' },
     { code: 10021, msg: '未找到文件' },
     { code: 10100, msg: '请求过于频繁，请稍后重试' },
+    { code: 10200, msg: '当前网络已中断，请检查网络' },
 ];

@@ -41,3 +41,8 @@ project
 └─ yarn.lock
 
 ```
+
+## 今日计划
+
+- 集成redux
+- 集成react-native-modals
