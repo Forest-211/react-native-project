@@ -4,7 +4,8 @@ import Spinkit from 'react-native-spinkit';
 import Base from './Base';
 import { handleGetOnece } from './service/todos';
 import appStyles from './assets/styles/screens/app';
-import Toast from 'react-native-toast-message';
+import Message from 'react-native-toast-message';
+import EasyToast from 'react-native-easy-toast';
 import { Todo } from './types/service/todo';
 
 interface Props {}
@@ -14,6 +15,7 @@ interface State {
     todo: Todo;
 }
 export default class App extends Base<Props, State> {
+    toast: any;
     constructor(props: Props) {
         // @ts-ignore
         super(props);
@@ -55,17 +57,22 @@ export default class App extends Base<Props, State> {
     }
 
     handleToastMessage() {
-        Toast.show({
+        Message.show({
             type: 'error',
             text1: 'title1',
             text2: 'This is some something1 👋',
         });
-        Toast.show({
+        Message.show({
             type: 'success',
             text1: 'title2',
             autoHide: false,
             text2: 'This is some something2 👋',
         });
+    }
+
+    async handleEasyToast() {
+        await this.toast.show('hello world1!');
+        await this.toast.show('hello world!2');
     }
 
     render() {
@@ -113,7 +120,16 @@ export default class App extends Base<Props, State> {
                     title="Toast-message"
                     onPress={() => this.handleToastMessage()}
                 />
-                <Toast ref={ref => Toast.setRef(ref)} />
+                <Button
+                    title="easy-toast"
+                    onPress={() => this.handleEasyToast()}
+                />
+                <Message ref={ref => Message.setRef(ref)} />
+                <EasyToast
+                    opacity={0.5}
+                    position="center"
+                    ref={toast => (this.toast = toast)}
+                />
             </>
         );
     }
