@@ -15,7 +15,7 @@ interface PropsConnectedDispatcher {
 
 class Counter extends Base<Props & PropsConnectedDispatcher, any> {
     render() {
-        console.log('props:', this.props);
+        // console.log('props:', this.props);
         const { counter, handlePressIncrement, handlePressDecrement } =
             this.props;
         return (
@@ -35,7 +35,7 @@ class Counter extends Base<Props & PropsConnectedDispatcher, any> {
 }
 
 function mapStateToProps(state: any) {
-    console.log('state:', state);
+    // console.log('state:', state);
     return state.counterReducer;
 }
 
