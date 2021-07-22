@@ -1,6 +1,9 @@
 import { Component } from 'react';
+import { RootStackNavigation } from './navigator/navigator';
 
-interface Props {}
+interface Props {
+    navigation: RootStackNavigation;
+}
 
 interface State {
     name: boolean;

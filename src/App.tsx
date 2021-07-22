@@ -9,6 +9,7 @@ import EasyToast from 'react-native-easy-toast';
 import { Provider } from 'react-redux';
 import { Todo } from './types/service/todo';
 import store from './store/store';
+import Navigator from './navigator/navigator';
 
 interface Props {}
 interface State {
@@ -132,6 +133,7 @@ export default class App extends Base<Props, State> {
                     position="center"
                     ref={toast => (this.toast = toast)}
                 />
+                <Navigator />
             </Provider>
         );
     }
