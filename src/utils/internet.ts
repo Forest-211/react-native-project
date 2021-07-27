@@ -4,6 +4,7 @@ async function internet() {
     const { isConnected, type } = await fetch();
     return { isConnected, type };
 }
+
 // Subscribe
 const unsubscribe = addEventListener(state => {
     console.log('Connection type', state.type);

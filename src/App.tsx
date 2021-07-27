@@ -9,7 +9,7 @@ import EasyToast from 'react-native-easy-toast';
 import { Provider } from 'react-redux';
 import { Todo } from './types/service/todo';
 import store from './store/store';
-import Navigator from './navigator/navigator';
+import { Navigator } from './navigator/index';
 
 interface Props {}
 interface State {
@@ -138,9 +138,3 @@ export default class App extends Base<Props, State> {
         );
     }
 }
-
-// function mapStateToProps(state: any) {
-//     console.log('state:', state);
-// }
-
-// connect(mapStateToProps)(App);

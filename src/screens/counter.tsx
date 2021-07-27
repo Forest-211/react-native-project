@@ -39,7 +39,7 @@ function mapStateToProps(state: any) {
     return state.counterReducer;
 }
 
-const mapDispatchToProps = (dispath: Dispatch<Action<any>>) => {
+function mapDispatchToProps(dispath: Dispatch<Action<any>>) {
     return {
         handlePressIncrement() {
             return dispath(counterAction.increment());
@@ -48,5 +48,5 @@ const mapDispatchToProps = (dispath: Dispatch<Action<any>>) => {
             return dispath(counterAction.decrement());
         },
     };
-};
+}
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);

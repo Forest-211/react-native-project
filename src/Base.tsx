@@ -11,7 +11,7 @@ interface State {
 
 export default class Base<P, S> extends Component<Props & P, State & S> {
     constructor(props: Props) {
-        //@ts-ignore
+        // @ts-ignore
         super(props);
 
         // @ts-ignore
